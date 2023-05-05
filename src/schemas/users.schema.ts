@@ -7,10 +7,14 @@ export const usersSchema = z.object({
     admin: z.boolean().default(false),
     password: z.string().max(120),
     createdAt: z.date(),
-    updatedAt: z.date(),
+    updatedAt: z.date().nullable(),
     deletedAt: z.date().nullable()
 })
 
-export const usersRequestSchema = usersSchema.omit({id: true, createdAt: true, updatedAt: true, deletedAt: true})
+export const usersRequestSchema = usersSchema.omit({id: true, createdAt: true, deletedAt: true, updatedAt: true})
 
 export const usersResponseSchema = usersSchema.omit({password: true})
+
+export const userUpdateSchema = usersSchema.omit({id: true, admin: true, createdAt: true, updatedAt: true, deletedAt: true}).partial()
+
+export const loginSchema = usersSchema.pick({email: true, password: true})
