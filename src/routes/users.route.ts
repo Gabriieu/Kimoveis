@@ -4,6 +4,7 @@ import { userUpdateSchema, usersRequestSchema } from "../schemas/users.schema";
 import { createUserController, getUsersController, softDeleteController, updateUserController } from "../controllers/users.controllers";
 import { validateEmailMiddleware } from "../middlewares/validateEmail.middleware";
 import { validateTokenMiddleware } from "../middlewares/validateToken.middleware";
+import { validateIDMiddleware } from "../middlewares/validateID.middleware";
 
 export const usersRoutes: Router = Router()
 
@@ -11,6 +12,6 @@ usersRoutes.post('', validateData(usersRequestSchema), validateEmailMiddleware, 
 
 usersRoutes.get('', validateTokenMiddleware, getUsersController)
 
-usersRoutes.patch('/:id', validateData(userUpdateSchema), validateEmailMiddleware, validateTokenMiddleware, updateUserController)
+usersRoutes.patch('/:id', validateData(userUpdateSchema), validateIDMiddleware, validateTokenMiddleware, updateUserController)
 
-usersRoutes.delete('/:id', validateTokenMiddleware, softDeleteController)
+usersRoutes.delete('/:id', validateTokenMiddleware, validateIDMiddleware, softDeleteController)

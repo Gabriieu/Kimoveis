@@ -1,4 +1,5 @@
 import {
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -19,7 +20,7 @@ class RealEstate {
   sold: boolean;
 
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0 })
-  value: number;
+  value: string | number;
 
   @Column({ type: "integer" })
   size: number;
@@ -37,6 +38,11 @@ class RealEstate {
   @OneToOne(() => Address)
   @JoinColumn()
   address: Address;
+
+  @BeforeUpdate()
+  updateDate() {
+    this.updatedAt = new Date()
+  }
 }
 
 export default RealEstate;

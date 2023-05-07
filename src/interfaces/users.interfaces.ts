@@ -13,4 +13,4 @@ export type tLogin = z.infer<typeof loginSchema>
 
 export type tToken = {token: string}
 
-export type tUserUpdate = DeepPartial<typeof userUpdateSchema>
+export type tUserUpdate = DeepPartial<tUserRequest>

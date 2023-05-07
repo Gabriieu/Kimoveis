@@ -7,7 +7,7 @@ import { AppError } from "../../error"
 export const createCategoryService = async (categoryData: tCategoryRequest, token: any): Promise<tCategory> => {
 
     if(!token.admin){
-        throw new AppError('Insufficient permission', 401)
+        throw new AppError('Insufficient permission', 403)
     }
     
     const categoryRepository: Repository<Category> = AppDataSource.getRepository(Category)

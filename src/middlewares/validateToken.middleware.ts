@@ -8,7 +8,7 @@ export const validateTokenMiddleware = (req: Request, res: Response, next: NextF
     let token: string | undefined = req.headers.authorization?.split(' ')[1]
 
     if(!token){
-        throw new AppError('Token is missing', 401)
+        throw new AppError('Missing bearer token', 401)
     }
 
     jwt.verify(token, process.env.SECRET_KEY!, (error: any, decoded: any) => {

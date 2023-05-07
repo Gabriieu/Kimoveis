@@ -8,7 +8,6 @@ export const createUserService = async (payload: tUserRequest): Promise<tUserRes
 
     const usersRepository: Repository<User> = AppDataSource.getRepository(User)
     
-
     const createUser: User = usersRepository.create(payload)
 
     await usersRepository.save(createUser)

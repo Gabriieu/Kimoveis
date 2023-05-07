@@ -13,7 +13,7 @@ export const validateEmailMiddleware = async (req: Request, res: Response, next:
     const foundUser: User | null = await usersRepository.findOneBy({email: email})
 
     if(foundUser){
-        throw new AppError('Email already registered', 409)
+        throw new AppError('Email already exists', 409)
     }
 
     return next()

@@ -19,10 +19,10 @@ class User {
     password: string
 
     @CreateDateColumn()
-    createdAt?: Date | string
+    createdAt: Date
 
     @CreateDateColumn({default: null})
-    updatedAt?: Date | string | null
+    updatedAt?: Date | null
 
     @DeleteDateColumn({nullable: true})
     deletedAt?: Date | null | undefined
@@ -33,8 +33,8 @@ class User {
     }
 
     @BeforeUpdate()
-    async hashPasswordUpdate() {
-        this.password = await bcrypt.hash(this.password, 10)
+    newUpdateData() {
+        this.updatedAt = new Date()
     }
 }
 

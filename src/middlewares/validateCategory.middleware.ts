@@ -15,7 +15,7 @@ export const validateCategoryMiddleware = async (req: Request, res: Response, ne
     })
 
     if(foundCategory){
-        throw new AppError('Category already registered', 409)
+        throw new AppError('Category already exists', 409)
     }
 
     return next()

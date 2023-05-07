@@ -16,13 +16,13 @@ export const loginService = async (payload: tLogin): Promise<tToken> => {
     })
 
     if(!user || user.deletedAt){
-        throw new AppError('Incorrect email or password', 400)
+        throw new AppError('Invalid credentials', 401)
     }
 
     const compare = await bcrypt.compare(payload.password, user.password)
 
     if(!compare){
-        throw new AppError('Incorrect email or password', 400)
+        throw new AppError('Invalid credentials', 401)
     }
 
     const token = jwt.sign(
