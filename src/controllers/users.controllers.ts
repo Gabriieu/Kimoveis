@@ -4,7 +4,6 @@ import { createUserService } from "../services/users/createUser.service";
 import { getUserService } from "../services/users/getUsers.service";
 import { updateUserService } from "../services/users/updateUser.service";
 import { softDeleteService } from "../services/users/softDelete.service";
-import { User } from "../entities";
 
 export const createUserController = async (req: Request, res: Response): Promise<Response> => {
     

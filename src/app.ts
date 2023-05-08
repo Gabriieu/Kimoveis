@@ -6,6 +6,7 @@ import { usersRoutes } from "./routes/users.route"
 import { loginRoute } from "./routes/login.route"
 import { categoryRoutes } from "./routes/category.route"
 import { realEstateRoute } from "./routes/realEstate.route"
+import { scheduleRoute } from "./routes/schedule.route"
 
 
 const app: Application = express()
@@ -15,6 +16,7 @@ app.use('/users', usersRoutes)
 app.use('/login', loginRoute)
 app.use('/categories', categoryRoutes)
 app.use('/realEstate', realEstateRoute)
+app.use('/schedules', scheduleRoute)
 
 app.use(handleErrors)
 

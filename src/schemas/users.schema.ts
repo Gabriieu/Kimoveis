@@ -6,7 +6,7 @@ export const usersSchema = z.object({
     email: z.string().email().max(256),
     admin: z.boolean().default(false),
     password: z.string().max(120),
-    createdAt: z.coerce.date(),
+    createdAt: z.date(),
     updatedAt: z.date().nullable(),
     deletedAt: z.date().nullable()
 })

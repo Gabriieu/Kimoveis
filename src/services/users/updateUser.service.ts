@@ -23,8 +23,7 @@ export const updateUserService = async(userId: number, userData: tUserUpdate, to
     
     const newData: User = userRepository.create({
         ...user,
-        ...userData,
-        updatedAt: new Date()
+        ...userData
     })
 
     await userRepository.save(newData)

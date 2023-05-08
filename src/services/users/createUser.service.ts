@@ -11,8 +11,9 @@ export const createUserService = async (payload: tUserRequest): Promise<tUserRes
     const createUser: User = usersRepository.create(payload)
 
     await usersRepository.save(createUser)
-
+    console.log(createUser)
     const returnUser: tUserResponse = usersResponseSchema.parse(createUser)
-
+    console.log(`*********\n\n\n${returnUser}********`)
+    
     return returnUser
 }

@@ -27,6 +27,7 @@ export const loginService = async (payload: tLogin): Promise<tToken> => {
 
     const token = jwt.sign(
         {
+            id: user.id,
             name: user.name,
             admin: user.admin
         },
