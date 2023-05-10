@@ -27,7 +27,7 @@ export const handleErrors = (error: Error, request: Request, response: Response,
 
     console.log(error)
 
-    return response.status(400).json({
+    return response.status(500).json({
         message: 'Internal server error.'
     })
 }

@@ -3,6 +3,7 @@ import { tAddressRequest, tRealEstate, tRealEstateRequest } from "../interfaces/
 import { createRealEstateService } from "../services/real_estate/createRealEstate.service";
 import { RealEstate } from "../entities";
 import { getRealEstateService } from "../services/real_estate/getRealEstate.service";
+import { getRealEstateByCategorieService } from "../services/categories/getRealEstateByCategorie.service";
 
 export const createRealEstateController = async (req: Request, res: Response): Promise<Response> => {
 

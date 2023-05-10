@@ -18,7 +18,7 @@ export const validateAddressMiddleware = async (req: Request, res: Response, nex
     })
 
     if(findAddress){
-        throw new AppError('Address already registered', 409)
+        throw new AppError('Address already exists', 409)
     }
 
     return next()

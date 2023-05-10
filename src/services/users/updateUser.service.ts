@@ -12,7 +12,7 @@ export const updateUserService = async(userId: number, userData: tUserUpdate, to
         throw new AppError('Insufficient permission', 403)
     }
     
-    userData.password ? userData.password = await hash(userData.password, 10) : null
+    //userData.password ? userData.password = await hash(userData.password, 10) : null
 
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 

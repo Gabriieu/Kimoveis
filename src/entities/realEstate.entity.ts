@@ -35,7 +35,7 @@ class RealEstate {
   @JoinColumn()
   category: Category;
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, address => address.id)
   @JoinColumn()
   address: Address;
 

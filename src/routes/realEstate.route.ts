@@ -8,6 +8,6 @@ import { realEstateRequestSchema } from "../schemas/realEstate.schema";
 
 export const realEstateRoute: Router = Router()
 
-realEstateRoute.post('', validateData(realEstateRequestSchema), validateTokenMiddleware, adminRouteMiddleware, validateAddressMiddleware, createRealEstateController)
+realEstateRoute.post('',  validateTokenMiddleware, adminRouteMiddleware, validateAddressMiddleware, validateData(realEstateRequestSchema), createRealEstateController)
 
 realEstateRoute.get('', listAllRealEstateController)
