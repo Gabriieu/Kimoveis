@@ -11,4 +11,4 @@ export const scheduleRoute: Router = Router()
 
 scheduleRoute.post('', validateTokenMiddleware, validateData(scheduleRequestSchema),validateScheduleMiddleware, createScheduleController)
 
-scheduleRoute.get('/realEstate/:id',validateTokenMiddleware, adminRouteMiddleware, validateRealEstateIdMiddleware, getSchedulesController)
+scheduleRoute.get('/realEstate/:id', validateTokenMiddleware, adminRouteMiddleware, validateRealEstateIdMiddleware, getSchedulesController)

@@ -5,12 +5,13 @@ import { createUserController, getUsersController, softDeleteController, updateU
 import { validateEmailMiddleware } from "../middlewares/validateEmail.middleware";
 import { validateTokenMiddleware } from "../middlewares/validateToken.middleware";
 import { validateIDMiddleware } from "../middlewares/validateID.middleware";
+import { adminRouteMiddleware } from "../middlewares/adminRoute.middleware";
 
 export const usersRoutes: Router = Router()
 
 usersRoutes.post('', validateData(usersRequestSchema), validateEmailMiddleware, createUserController)
 
-usersRoutes.get('', validateTokenMiddleware, getUsersController)
+usersRoutes.get('', validateTokenMiddleware,adminRouteMiddleware, getUsersController)
 
 usersRoutes.patch('/:id', validateData(userUpdateSchema), validateIDMiddleware, validateTokenMiddleware, updateUserController)
 

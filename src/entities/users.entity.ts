@@ -1,5 +1,5 @@
 import { hashSync } from "bcryptjs";
-import { BeforeInsert, BeforeSoftRemove, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
 class User {
@@ -19,10 +19,10 @@ class User {
     password: string
 
     @CreateDateColumn()
-    createdAt: Date | string
+    createdAt: Date
 
     @CreateDateColumn({ default: null})
-    updatedAt?: Date | string | null | undefined
+    updatedAt?: Date | null | undefined
 
     @DeleteDateColumn({type: 'date', default: null})
     deletedAt?: Date | string | null | undefined

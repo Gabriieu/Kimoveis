@@ -20,7 +20,7 @@ export const getScheduleByRealEstateService = async (realEstateId: number) => {
 
     const resposta = {...findRealEstate, schedules: findSchedules}
     
-    console.log(resposta)
+    console.log(findSchedules)
 
     return resposta
 }

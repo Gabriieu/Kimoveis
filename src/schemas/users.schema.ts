@@ -7,7 +7,7 @@ export const usersSchema = z.object({
     admin: z.boolean().default(false),
     password: z.string().max(120),
     createdAt: z.date(),
-    updatedAt: z.date().nullable(),
+    updatedAt: z.date(),
     deletedAt: z.date().nullable()
 })
 

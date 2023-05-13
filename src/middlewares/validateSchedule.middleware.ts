@@ -1,15 +1,18 @@
 import { NextFunction, Request, Response } from "express";
 import { Repository } from "typeorm";
-import { Schedule } from "../entities";
+import { RealEstate, Schedule, User } from "../entities";
 import { AppDataSource } from "../data-source";
 import { AppError } from "../error";
 
 export const validateScheduleMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
-    let {date, hour, realEstateId} = req.body
     const userId: number = res.locals.token.id
+    const {hour, realEstateId} = req.body
+    const date = new Date(req.body.date).toISOString().split("T")[0]
+
     const scheduleRepository: Repository<Schedule> = AppDataSource.getRepository(Schedule)
-    date = new Date(new Date(date.setDate(date.getDate()+ 1)).toISOString().split('T')[0])
+    const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate)
+    const userRepository: Repository<User> = AppDataSource.getRepository(User)
     
     const weekday = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
 
@@ -22,21 +25,24 @@ export const validateScheduleMiddleware = async (req: Request, res: Response, ne
     }
 
     const checkUsersSchedules = await scheduleRepository.createQueryBuilder("schedule")
-    .where("schedule.date = :date AND schedule.hour = :hour", {date: date, hour: hour})
-    .andWhere("schedule.userId = :userId", {userId: userId})
+    .where("schedule.RealEstate = :re",{re: realEstateId})
+    .andWhere("schedule.date = :date",{date: date})
+    .andWhere("schedule.hour = :hour",{hour: hour})
     .getOne()
-    
+
+    console.log(`\n\n\n\n${checkUsersSchedules}`)
     if(checkUsersSchedules){
-        throw new AppError('User schedule to this real estate at this date and time already exists', 409)
+        throw new AppError('Schedule to this real estate at this date and time already exists', 409)
     }
     
     const chechAvailability = await scheduleRepository.createQueryBuilder("schedule")
-    .where("schedule.date = :date AND schedule.hour = :hour", {date: date, hour: hour})
-    .andWhere("schedule.realEstateId = :estateId", {estateId: realEstateId})
+    .where("schedule.userId = :user", {user: userId})
+    .andWhere("schedule.date = :date",{date: date})
+    .andWhere("schedule.hour = :hour",{hour: hour})
     .getOne()
-    
+    //console.log(`\n\n\n\n${date}`)
     if(chechAvailability){
-        throw new AppError('Schedule to this real estate at this date and time already exists', 409)
+        throw new AppError('User schedule to this real estate at this date and time already exists', 409)
     }
 
 

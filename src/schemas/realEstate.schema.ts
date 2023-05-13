@@ -4,7 +4,7 @@ export const realEstateSchema = z.object({
     id: z.number(),
     sold: z.boolean().nullable(),
     value: z.string(),
-    size: z.number(),
+    size: z.number().min(1, {message: 'Number must be greater than 0'}),
     createdAt: z.date(),
     updatedAt: z.date(),
     addressId: z.number(),

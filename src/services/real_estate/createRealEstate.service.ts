@@ -5,7 +5,7 @@ import { AppDataSource } from "../../data-source";
 import { AppError } from "../../error";
 
 export const createRealEstateService = async (realEstateData: tRealEstateRequest, addressData: tAddressRequest): Promise<RealEstate> => {
-
+    
     const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate)
     const addressRepository: Repository<Address> = AppDataSource.getRepository(Address)
     const categoryRepository: Repository<Category> = AppDataSource.getRepository(Category)
@@ -27,6 +27,7 @@ export const createRealEstateService = async (realEstateData: tRealEstateRequest
     })
 
     const saveRealEstate: RealEstate = await realEstateRepository.save(newRealEstate)
+
 
     return saveRealEstate
 }
